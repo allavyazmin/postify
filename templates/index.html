@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Postify</title>
+    <style>
+        .post-box {
+            border: 1px solid black;
+            padding: 10px;
+            margin: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Postify</h1>
+
+    {% if user %}
+        <p>Welcome, {{ user }}! <a href="/logout">Logout</a></p>
+    {% else %}
+        <p><a href="/login">Login</a> or <a href="/register">Register</a></p>
+    {% endif %}
+
+    {% if user %}
+        <h2>Create a Post</h2>
+        <form action="/post" method="post">
+            <input type="text" name="name" placeholder="Post Title (max 50 chars)" maxlength="50" required>
+            <input type="text" name="author" value="{{ user }}" readonly>
+            <textarea name="content" placeholder="Content (ASCII only, max 5000 chars)" maxlength="5000" required></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    {% else %}
+        <p>You must be logged in to create posts.</p>
+    {% endif %}
+
+    <h2>Posts</h2>
+    {% for post in posts %}
+        <div class="post-box" onclick="location.href='/post/{{ post[0] }}'">
+            <h3>{{ post[1] }} by {{ post[2] }}</h3>
+        </div>
+    {% endfor %}
+</body>
+</html>
