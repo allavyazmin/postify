@@ -29,7 +29,7 @@ def load_secret_key():
 
 app = Flask(__name__)
 app.secret_key = load_secret_key()
-WEBHOOK_URL = "https://discord.com/api/webhooks/1343195395085435020/x0ifLcXROAn6yYes2UQCKl8yVEyOUnYDILUquHxlzUHJDwaTIO4KBvJJCloeGxBgpkex"
+WEBHOOK_URL = "you will never get my webhook lol"
 
 def init_db():
     conn = sqlite3.connect("database.db")
